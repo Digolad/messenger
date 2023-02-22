@@ -1,0 +1,11 @@
+version: "3"
+services:
+  db:
+    image: utils:5.7
+    ports:
+     - 3306:3306
+    environment:
+       - MYSQL_ROOT_PASSWORD=qwe123QWE
+       - MYSQL_USER=tester
+       - MYSQL_PASSWORD=qwe123QWE
+       - MYSQL_DATABASE=messanger_db
