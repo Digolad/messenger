@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="{{ url_for('static', path='/css/home.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', path='/css/home_style.css') }}" rel="stylesheet">
 </head>
 <body>
 <div class="registration-cssave">
@@ -13,14 +13,20 @@
         <i>You need login to be identified</i>
         <h3 class="text-center">Login Form</h3>
         <div class="form-group">
-            <input class="form-control item" type="text" name="username" maxlength="15" minlength="4" pattern="^[a-zA-Z0-9_.-]*$" id="username" placeholder="Login" required>
+            <input class="form-control item" type="email" name="email" id="email" placeholder="Email" required>
+            <div class="validation_message">
+                The mail not registered yet.
+            </div>
         </div>
+        
+<!--        <div class="form-group">-->
+<!--            <input class="form-control item" type="text" name="username" maxlength="15" minlength="4" pattern="^[a-zA-Z0-9_.-]*$" id="username" placeholder="Login" required>-->
+<!--        </div>-->
         <div class="form-group">
             <input class="form-control item" type="password" name="password" minlength="6" id="password" placeholder="Password" required>
+            <div class="validation_message">The password does not match with DB version.</div>
         </div>
-<!--        <div class="form-group">-->
-<!--            <input class="form-control item" type="email" name="email" id="email" placeholder="Email" required>-->
-<!--        </div>-->
+        
         <div class="form-group">
             <button class="btn btn-primary btn-block create-account" type="submit" value="send">Sign in</button>
         </div>
