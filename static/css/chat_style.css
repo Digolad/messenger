@@ -33,7 +33,11 @@ body {
 
 .conv-list-view__header {
   height: 50px;
+  background-color: lightblue;
+  
+  /*
   border-bottom: 1px solid #F0F0F0;
+  */
 }
 
 .status__indicator:after, .status__indicator--online:after, .status__indicator--unread-message:after, .status__indicator--replied-message:after, .status__indicator--read-message:after, .status__indicator:before, .status__indicator--online:before, .status__indicator--unread-message:before, .status__indicator--replied-message:before, .status__indicator--read-message:before, .message__bubble:after, .message__bubble--send:after, .input:after, .input__emoticon:after, .input__emoticon:before {

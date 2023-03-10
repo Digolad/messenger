@@ -58,4 +58,10 @@ body {
     color: red;
     font-style: italic;
     font-size: 10px;
+    margin-bottom: 5px;
+    padding: 5px 5px;
+}
+p {
+    margin: 0px;
+    padding: 0px;
 }

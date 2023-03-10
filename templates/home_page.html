@@ -12,10 +12,11 @@
         <h2>Welcome to Home page</h2>
         <i>You need login to be identified</i>
         <h3 class="text-center">Login Form</h3>
+
         <div class="form-group">
             <input class="form-control item" type="email" name="email" id="email" placeholder="Email" required>
             <div class="validation_message">
-                The mail not registered yet.
+                <p hidden> The mail not registered yet.</p>
             </div>
         </div>
         
@@ -24,7 +25,9 @@
 <!--        </div>-->
         <div class="form-group">
             <input class="form-control item" type="password" name="password" minlength="6" id="password" placeholder="Password" required>
-            <div class="validation_message">The password does not match with DB version.</div>
+            <div class="validation_message">
+                <p hidden> The password does not match with DB version.</p>
+            </div>
         </div>
         
         <div class="form-group">

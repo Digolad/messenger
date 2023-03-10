@@ -4,7 +4,7 @@ from mysql.connector import Error
 
 class DBManager:
 
-    def __init__(self, address: str, user: str, password: str, db_name: str = 'messanger_db'):
+    def __init__(self, address: str, user: str, password: str, db_name: str = 'messenger'):
         self.address = address
         self.user = user
         self.password = password
@@ -36,46 +36,57 @@ class DBManager:
     def delete_from_table(self):
         pass
 
-    def find_a_match(self, table_name: str, data: str):
-        query = f'SELECT * FROM {self.db_name}.{table_name} WHERE {table_name}.mail LIKE "{data}"'
-        return self.exec_query(query)
+    def find_a_match(self, table_name: str, column_name: str, data: str):
+        query = f'SELECT * FROM {self.db_name}.{table_name} WHERE {table_name}.{column_name} LIKE "{data}"'
+        return self.exec_query_for_reading(query)
 
     def get_data(self, table_name: str) -> list:
         query = f'SELECT * FROM {self.db_name}.{table_name}'
-        return self.exec_query(query)
+        return self.exec_query_for_reading(query)
 
-    def exec_query(self, query) -> list:
+    def exec_query_for_creating(self, query):
         cursor = self.try_to_create_connection.cursor()
 
         try:
             cursor.execute(query)
             self.try_to_create_connection.commit()
-            record = cursor.fetchall()
+            #cursor.fetchall()
+            print(f'The query "{query}" was sent success!')
 
-            print('The query was sent success!')
-            print(f'The query: {query}')
+        except Error as err:
+            print(f"Something went wrong: {err}")
+            return None
+
+    def exec_query_for_reading(self, query):
+        cursor = self.try_to_create_connection.cursor()
+
+        try:
+            cursor.execute(query)
+            record = cursor.fetchall()
+            print(f'The query "{query}" was sent success!')
             return record
 
         except Error as err:
             print(f"Something went wrong: {err}")
             return None
 
-    # def insert_varibles_into_user_table(self, mySql_insert_query, record: list):
-    #     cursor = self.try_to_create_connection.cursor()
-    #
-    #     try:
-    #         cursor.execute(mySql_insert_query, record)
-    #         self.try_to_create_connection.commit()
-    #         print("Record inserted successfully into Laptop table")
-    #
-    #     except mysql.connector.Error as error:
-    #         print("Failed to insert into MySQL table {}".format(error))
-    #
-    #     finally:
-    #         if self.try_to_create_connection.is_connected():
-    #             cursor.close()
-    #             self.try_to_create_connection.close()
-    #             print("MySQL connection is closed")
+    def get_databases_list(self) -> list:
+        query = 'SHOW DATABASES'
+        data = self.exec_query_for_reading(query)
+        empty_list = []
+        for item in data:
+            empty_list.append(item[0])
+        return empty_list
 
+    def get_tables_list(self, database) -> list:
+        query = f'SHOW TABLES FROM {database}'
+        data = self.exec_query_for_reading(query)
 
+        if data is None:
+            return None
+
+        empty_list = []
+        for item in data:
+            empty_list.append(item[0])
+        return empty_list
 
